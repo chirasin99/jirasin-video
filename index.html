@@ -274,6 +274,27 @@
     display:flex;align-items:center;justify-content:center;font-size:18px;color:white;
   }
 
+  /* ================= VIDEO MODAL ================= */
+  .video-modal{
+    display:none;position:fixed;inset:0;z-index:200;
+    background:rgba(10,4,20,0.92);
+    align-items:center;justify-content:center;padding:20px;
+  }
+  .video-modal.open{display:flex;}
+  .video-modal-inner{
+    width:100%;max-width:900px;aspect-ratio:16/9;position:relative;
+  }
+  .video-modal-inner iframe{
+    width:100%;height:100%;border:0;border-radius:14px;
+  }
+  .video-modal-close{
+    position:absolute;top:-44px;right:0;
+    background:var(--card);border:1px solid var(--card-line);color:white;
+    width:36px;height:36px;border-radius:9999px;font-size:18px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .video-modal-close:hover{background:var(--magenta);border-color:var(--magenta);}
+
   /* ================= CONTACT / FOOTER ================= */
   .contact{
     position:relative;text-align:center;padding:80px 0 60px;overflow:hidden;
@@ -508,11 +529,18 @@
     <div class="wrap">
       <div class="section-eyebrow">ผลงานที่ผ่านมา</div>
       <h2>ตัวอย่างงานถ่ายจริง</h2>
-      <p class="sub">คลิกเพื่อรับชมผลงานเต็มบน YouTube</p>
+      <p class="sub">คลิกเพื่อรับชมผลงานเต็ม</p>
 
       <div class="yt-grid" id="ytGrid"></div>
     </div>
   </section>
+
+  <div class="video-modal" id="videoModal">
+    <div class="video-modal-inner">
+      <button class="video-modal-close" onclick="closeVideoModal()">✕</button>
+      <iframe id="videoModalFrame" src="" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
 
   <section class="contact">
     <div class="contact-glow"></div>
@@ -551,14 +579,35 @@
 
   var grid = document.getElementById('ytGrid');
   videoIds.forEach(function (id) {
-    var card = document.createElement('a');
-    card.href = 'https://www.youtube.com/watch?v=' + id;
-    card.target = '_blank';
+    var card = document.createElement('button');
+    card.type = 'button';
     card.className = 'yt-card';
+    card.style.cssText = 'padding:0;cursor:pointer;';
+    card.setAttribute('onclick', "openVideoModal('" + id + "')");
     card.innerHTML =
       '<img src="https://img.youtube.com/vi/' + id + '/hqdefault.jpg" loading="lazy" alt="ผลงานถ่ายวีดีโอ">' +
       '<div class="yt-play"><span>▶</span></div>';
     grid.appendChild(card);
+  });
+
+  function openVideoModal(id) {
+    var modal = document.getElementById('videoModal');
+    var frame = document.getElementById('videoModalFrame');
+    frame.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1';
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeVideoModal() {
+    var modal = document.getElementById('videoModal');
+    var frame = document.getElementById('videoModalFrame');
+    modal.classList.remove('open');
+    frame.src = '';
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('videoModal').addEventListener('click', function (e) {
+    if (e.target === this) closeVideoModal();
   });
 </script>
 
