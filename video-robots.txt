@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://chirasin99.github.io/jirasin-video/sitemap.xml
