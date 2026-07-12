@@ -196,7 +196,8 @@
     transition:transform .28s cubic-bezier(.34,1.56,.64,1), box-shadow .28s ease;
   }
   .cat-card:hover{transform:translateY(-6px) scale(1.035);box-shadow:0 18px 34px -14px rgba(0,0,0,0.55);}
-  .cat-texture{position:absolute;inset:0;background-size:cover;background-position:center;filter:saturate(1.15);}
+  .cat-texture{position:absolute;inset:0;background-size:cover;background-position:center;filter:blur(18px) saturate(1.1) brightness(0.55);transform:scale(1.15);}
+  .cat-texture-fg{position:absolute;inset:0;background-size:contain;background-repeat:no-repeat;background-position:center;filter:saturate(1.05);}
   .cat-1 .cat-texture{background:linear-gradient(135deg,#7c3aed,#c026d3);}
   .cat-2 .cat-texture{background:linear-gradient(135deg,#db2777,#f472b6);}
   .cat-3 .cat-texture{background:linear-gradient(135deg,#4f46e5,#8b5cf6);}
@@ -378,7 +379,8 @@
 
       <div class="cat-grid">
         <div class="cat-card cat-1">
-          <div class="cat-texture" style="background-image:url('cat-ordination.jpg')"></div>
+          <div class="cat-texture" style="background-image:url('images/cat-ordination.jpg')"></div>
+          <div class="cat-texture-fg" style="background-image:url('images/cat-ordination.jpg')"></div>
           <div class="cat-tint"></div>
           <div class="cat-icon">🙏</div>
           <div class="cat-shade"></div>
@@ -386,7 +388,8 @@
           <div class="cat-label"><div class="name">งานบวช</div><div class="sub">พิธีบวชและงานทำบุญ</div></div>
         </div>
         <div class="cat-card cat-2">
-          <div class="cat-texture" style="background-image:url('cat-wedding.jpg')"></div>
+          <div class="cat-texture" style="background-image:url('images/cat-wedding.jpg')"></div>
+          <div class="cat-texture-fg" style="background-image:url('images/cat-wedding.jpg')"></div>
           <div class="cat-tint"></div>
           <div class="cat-icon">💍</div>
           <div class="cat-shade"></div>
@@ -394,7 +397,8 @@
           <div class="cat-label"><div class="name">งานแต่ง</div><div class="sub">บันทึกวันสำคัญที่สุด</div></div>
         </div>
         <div class="cat-card cat-3">
-          <div class="cat-texture" style="background-image:url('cat-concert.jpg')"></div>
+          <div class="cat-texture" style="background-image:url('images/cat-concert.jpg')"></div>
+          <div class="cat-texture-fg" style="background-image:url('images/cat-concert.jpg')"></div>
           <div class="cat-tint"></div>
           <div class="cat-icon">🎤</div>
           <div class="cat-shade"></div>
@@ -402,7 +406,8 @@
           <div class="cat-label"><div class="name">คอนเสิร์ต</div><div class="sub">มัลติแคมพร้อมไลฟ์สด</div></div>
         </div>
         <div class="cat-card cat-4">
-          <div class="cat-texture" style="background-image:url('cat-seminar.jpg')"></div>
+          <div class="cat-texture" style="background-image:url('images/cat-seminar.jpg')"></div>
+          <div class="cat-texture-fg" style="background-image:url('images/cat-seminar.jpg')"></div>
           <div class="cat-tint"></div>
           <div class="cat-icon">📊</div>
           <div class="cat-shade"></div>
@@ -410,7 +415,8 @@
           <div class="cat-label"><div class="name">สัมมนา</div><div class="sub">ถ่ายทอดสดขึ้นจอ</div></div>
         </div>
         <div class="cat-card cat-5">
-          <div class="cat-texture" style="background-image:url('cat-party.jpg')"></div>
+          <div class="cat-texture" style="background-image:url('images/cat-party.jpg')"></div>
+          <div class="cat-texture-fg" style="background-image:url('images/cat-party.jpg')"></div>
           <div class="cat-tint"></div>
           <div class="cat-icon">🥳</div>
           <div class="cat-shade"></div>
@@ -418,7 +424,8 @@
           <div class="cat-label"><div class="name">ปาร์ตี้</div><div class="sub">งานเลี้ยงสังสรรค์</div></div>
         </div>
         <div class="cat-card cat-6">
-          <div class="cat-texture" style="background-image:url('cat-online.jpg')"></div>
+          <div class="cat-texture" style="background-image:url('images/cat-online.jpg')"></div>
+          <div class="cat-texture-fg" style="background-image:url('images/cat-online.jpg')"></div>
           <div class="cat-tint"></div>
           <div class="cat-icon">💻</div>
           <div class="cat-shade"></div>
@@ -613,4 +620,3 @@
 
 </body>
 </html>
-
