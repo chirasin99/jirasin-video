@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- 🔥 Firebase (ใช้โปรเจกต์เดียวกับ chirasin-market เพื่อเก็บข้อความคำอธิบายที่แก้ไขได้) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<title>รับถ่ายวีดีโอ 3,900 ฟรีค่าตัดต่อ โทร 092-386-6522</title>
+<meta name="description" content="รับถ่ายวีดีโองานพิธีต่างๆ งานบวช งานแต่ง งานเลี้ยงสังสรรค์ งานสัมนา งานปาร์ตี้ คอร์สสอนออนไลน์ งานคอนเสิร์ต รับทุกงานทั่วประเทศ งานไม่เกิน 5 ชม. 3,900 บาท งานเต็มวัน 5,900 บาท OB Switching 2-3 กล้อง">
+<meta name="keywords" content="รับถ่ายวีดีโอ, ถ่ายวีดีโองานแต่ง, ถ่ายวีดีโองานบวช, OB Switching, ไลฟ์สด, รับถ่ายทอดสด">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://chirasin99.github.io/jirasin-video/">
+<meta property="og:title" content="รับถ่ายวีดีโอ 3,900 ฟรีค่าตัดต่อ โทร 092-386-6522">
+<meta property="og:description" content="รับถ่ายวีดีโองานพิธี งานบวช งานแต่ง งานเลี้ยงสังสรรค์ งานสัมนา งานปาร์ตี้ คอร์สสอนออนไลน์ งานคอนเสิร์ต รับทุกงานทั่วประเทศ เริ่มต้น 3,900 บาท">
+<meta property="og:image" content="https://chirasin99.github.io/jirasin-video/cat-concert.jpg">
+<meta property="og:locale" content="th_TH">
+<link rel="canonical" href="https://chirasin99.github.io/jirasin-video/">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="รับถ่ายวีดีโอ 3,900 ฟรีค่าตัดต่อ โทร 092-386-6522">
+<meta name="twitter:description" content="รับถ่ายวีดีโองานพิธี งานบวช งานแต่ง งานเลี้ยงสังสรรค์ งานสัมนา งานปาร์ตี้ คอร์สสอนออนไลน์ งานคอนเสิร์ต รับทุกงานทั่วประเทศ เริ่มต้น 3,900 บาท">
+<meta name="twitter:image" content="https://chirasin99.github.io/jirasin-video/cat-concert.jpg">
+
+<!-- 🏷️ Schema.org: บอก Google ว่านี่คือธุรกิจรับถ่ายวีดีโอ ช่วยเรื่อง SEO ท้องถิ่นและการแสดงผลแบบ Rich Result -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "LocalBusiness",
+  "name": "จิรสิน รับถ่ายวีดีโอ",
+  "image": "https://chirasin99.github.io/jirasin-video/cat-concert.jpg",
+  "url": "https://chirasin99.github.io/jirasin-video/",
+  "telephone": "+66923866522",
+  "priceRange": "3900-12000 THB",
+  "areaServed": {
+    "@type": "Country",
+    "name": "Thailand"
+  },
+  "description": "รับถ่ายวีดีโอทุกงานทั่วประเทศ งานพิธี งานแต่ง งานบวช สัมนา คอนเสิร์ต พร้อมระบบ OB Switching และไลฟ์สด ฟรีค่าตัดต่อทุกงาน เริ่มต้น 3,900 บาท",
+  "makesOffer": [
+    {
+      "@type": "Offer",
+      "name": "งานไม่เกิน 5 ชั่วโมง",
+      "price": "3900",
+      "priceCurrency": "THB"
+    },
+    {
+      "@type": "Offer",
+      "name": "งานเต็มวัน 08.00–17.00 น.",
+      "price": "5900",
+      "priceCurrency": "THB"
+    },
+    {
+      "@type": "Offer",
+      "name": "OB Switching 2 กล้อง",
+      "price": "9000",
+      "priceCurrency": "THB"
+    },
+    {
+      "@type": "Offer",
+      "name": "OB Switching 3 กล้อง",
+      "price": "12000",
+      "priceCurrency": "THB"
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg-0:#180a2e;
+    --bg-1:#26103f;
+    --magenta:#ff2d78;
+    --gold:#ffc93c;
+    --violet:#8b5cf6;
+    --cyan:#22d3ee;
+    --text:#fdf6ff;
+    --muted:#c9b8de;
+    --card:#2a1245;
+    --card-line:#432066;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg-0);
+    color:var(--text);
+    font-family:'Kanit',sans-serif;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{font-family:'Anton',sans-serif;letter-spacing:0.5px;text-transform:uppercase;}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px;}
+
+  /* ================= NAV ================= */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(24,10,46,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--card-line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px;}
+  .brand{font-family:'Anton',sans-serif;font-size:18px;letter-spacing:1px;}
+  .brand span{color:var(--gold);}
+  .nav-call{
+    display:flex;align-items:center;gap:8px;
+    background:linear-gradient(135deg,var(--magenta),var(--violet));
+    padding:9px 18px;border-radius:9999px;font-weight:700;font-size:13px;
+  }
+
+  /* ================= HERO ================= */
+  .hero{
+    position:relative;
+    padding:76px 0 90px;
+    overflow:hidden;
+  }
+  .hero-glow{
+    position:absolute;inset:-20% -10%;
+    background:
+      radial-gradient(38% 45% at 15% 20%, rgba(255,45,120,0.55), transparent 70%),
+      radial-gradient(45% 50% at 85% 10%, rgba(139,92,246,0.5), transparent 70%),
+      radial-gradient(35% 40% at 60% 85%, rgba(255,201,60,0.35), transparent 70%);
+    filter:blur(10px);
+    animation:drift 14s ease-in-out infinite alternate;
+    z-index:0;
+  }
+  @keyframes drift{
+    0%{ transform: translate(0,0) scale(1); }
+    100%{ transform: translate(2%, -3%) scale(1.06); }
+  }
+  .hero-content{position:relative;z-index:1;text-align:center;}
+  .rec-chip{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.18);
+    padding:7px 16px;border-radius:9999px;
+    font-size:12px;font-weight:600;color:var(--muted);
+    margin-bottom:22px;
+  }
+  .rec-dot{width:8px;height:8px;border-radius:9999px;background:var(--magenta);box-shadow:0 0 0 0 rgba(255,45,120,0.6);animation:pulse 1.6s infinite;}
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(255,45,120,0.55);}
+    70%{box-shadow:0 0 0 9px rgba(255,45,120,0);}
+    100%{box-shadow:0 0 0 0 rgba(255,45,120,0);}
+  }
+  .hero h1{
+    font-size:clamp(40px,7vw,78px);
+    line-height:1.02;
+    background:linear-gradient(120deg,#fff 30%, var(--gold) 60%, var(--magenta) 90%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero p.lead{
+    max-width:620px;margin:22px auto 0;
+    color:var(--muted); font-size:16px; line-height:1.7;
+  }
+  .hero-cta{display:flex;gap:14px;justify-content:center;margin-top:34px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:15px 30px;border-radius:9999px;font-weight:700;font-size:15px;
+    border:none;cursor:pointer;
+  }
+  .btn-primary{background:linear-gradient(135deg,var(--magenta),var(--violet));color:white;box-shadow:0 10px 30px -8px rgba(255,45,120,0.55);}
+  .btn-line{background:#06c755;color:white;}
+  .price-badge{
+    display:inline-flex;align-items:center;gap:10px;margin-top:36px;
+    background:var(--card);border:1px solid var(--card-line);
+    padding:14px 26px;border-radius:20px;
+  }
+  .price-badge b{font-family:'Anton',sans-serif;font-size:26px;color:var(--gold);}
+  .price-badge .divider{width:1px;height:26px;background:var(--card-line);}
+
+  /* ================= SERVICES STRIP ================= */
+  .services{padding:10px 0 50px;position:relative;z-index:1;}
+  .chip-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
+  .chip{
+    background:var(--card);border:1px solid var(--card-line);
+    padding:10px 18px;border-radius:9999px;font-size:13px;font-weight:500;
+    display:flex;align-items:center;gap:8px;color:var(--text);
+  }
+
+  /* ================= CATEGORY SHOWCASE ================= */
+  .cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .cat-card{
+    position:relative;aspect-ratio:4/3;border-radius:18px;overflow:hidden;
+    border:1px solid var(--card-line);cursor:default;
+    transform:translateY(0) scale(1);
+    transition:transform .28s cubic-bezier(.34,1.56,.64,1), box-shadow .28s ease;
+  }
+  .cat-card:hover{transform:translateY(-6px) scale(1.035);box-shadow:0 18px 34px -14px rgba(0,0,0,0.55);}
+  .cat-texture{position:absolute;inset:0;background-size:cover;background-position:center;filter:saturate(1.15);}
+  .cat-tint{position:absolute;inset:0;mix-blend-mode:multiply;opacity:0.75;}
+  .cat-1 .cat-tint{background:linear-gradient(155deg,#ff2d78,#7a1d4f 70%);}
+  .cat-2 .cat-tint{background:linear-gradient(155deg,#8b5cf6,#341a6b 70%);}
+  .cat-3 .cat-tint{background:linear-gradient(155deg,#ffc93c,#8a5a10 70%);}
+  .cat-4 .cat-tint{background:linear-gradient(155deg,#22d3ee,#0e5866 70%);}
+  .cat-5 .cat-tint{background:linear-gradient(155deg,#ff2d78,#341a6b 70%);}
+  .cat-6 .cat-tint{background:linear-gradient(155deg,#8b5cf6,#8a5a10 70%);}
+  .cat-icon{
+    position:absolute;top:10px;right:12px;
+    font-size:20px;opacity:0.9;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+    z-index:2;
+  }
+  .cat-shade{position:absolute;inset:0;background:linear-gradient(0deg, rgba(10,4,20,0.88) 0%, rgba(10,4,20,0.05) 55%);}
+  .cat-num{
+    position:absolute;top:12px;left:14px;font-family:'Anton',sans-serif;
+    font-size:13px;color:rgba(255,255,255,0.75);letter-spacing:1px;
+  }
+  .cat-label{position:absolute;bottom:14px;left:16px;right:16px;}
+  .cat-label .name{font-family:'Anton',sans-serif;font-size:18px;color:white;letter-spacing:0.5px;}
+  .cat-label .sub{font-size:11px;color:var(--muted);margin-top:2px;}
+
+  /* ================= SECTION HEAD ================= */
+  .section{padding:70px 0;}
+  .section-eyebrow{
+    color:var(--gold);font-weight:700;font-size:12px;letter-spacing:2px;
+    text-transform:uppercase;margin-bottom:10px;text-align:center;
+  }
+  .section h2{font-size:clamp(28px,4vw,42px);text-align:center;margin-bottom:16px;}
+  .section .sub{color:var(--muted);text-align:center;max-width:560px;margin:0 auto 44px;font-size:15px;line-height:1.7;}
+
+  /* ================= PRICING ================= */
+  .price-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .price-card{
+    background:var(--card);border:1px solid var(--card-line);border-radius:22px;
+    padding:28px 22px;display:flex;flex-direction:column;gap:14px;position:relative;
+  }
+  .price-card.popular{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold), 0 20px 40px -20px rgba(255,201,60,0.4);}
+  .popular-tag{
+    position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+    background:var(--gold);color:#1a0a2e;font-size:11px;font-weight:800;
+    padding:4px 14px;border-radius:9999px;white-space:nowrap;
+  }
+  .price-card .tier-name{font-weight:600;font-size:14px;color:var(--muted);}
+  .price-card .tier-price{font-family:'Anton',sans-serif;font-size:32px;color:var(--text);}
+  .price-card .tier-price small{font-size:13px;color:var(--muted);font-family:'Kanit',sans-serif;font-weight:400;}
+  .price-card ul{list-style:none;display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--muted);}
+  .price-card ul li{display:flex;gap:6px;align-items:flex-start;}
+  .price-card ul li::before{content:"✓";color:var(--cyan);font-weight:700;}
+  .price-card .btn{margin-top:auto;width:100%;justify-content:center;padding:12px;font-size:13px;}
+
+  /* ================= WHY / FEATURES ================= */
+  .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .feature{
+    background:linear-gradient(160deg, var(--card), var(--bg-1));
+    border:1px solid var(--card-line);border-radius:20px;padding:26px 22px;
+  }
+  .feature .emoji{font-size:28px;margin-bottom:14px;display:block;}
+  .feature h3{font-family:'Kanit',sans-serif;font-weight:700;font-size:16px;text-transform:none;margin-bottom:8px;}
+  .feature p{font-size:13px;color:var(--muted);line-height:1.7;}
+
+  /* ================= PORTFOLIO ================= */
+  .yt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .yt-card{
+    position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--card-line);
+    aspect-ratio:16/9;background:#000;
+  }
+  .yt-card img{width:100%;height:100%;object-fit:cover;transition:transform .3s;}
+  .yt-card:hover img{transform:scale(1.06);}
+  .yt-play{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(0deg, rgba(0,0,0,0.55), rgba(0,0,0,0.05));
+  }
+  .yt-play span{
+    width:52px;height:52px;border-radius:9999px;background:rgba(255,45,120,0.9);
+    display:flex;align-items:center;justify-content:center;font-size:18px;color:white;
+  }
+
+  /* ================= CONTACT / FOOTER ================= */
+  .contact{
+    position:relative;text-align:center;padding:80px 0 60px;overflow:hidden;
+  }
+  .contact-glow{
+    position:absolute;inset:0;
+    background:radial-gradient(50% 60% at 50% 40%, rgba(255,45,120,0.25), transparent 70%);
+    z-index:0;
+  }
+  .contact-inner{position:relative;z-index:1;}
+  .phone-big{font-family:'Anton',sans-serif;font-size:clamp(36px,7vw,60px);color:var(--gold);}
+  footer{border-top:1px solid var(--card-line);padding:28px 0;text-align:center;color:var(--muted);font-size:12px;}
+
+  /* ================= STICKY MOBILE CALL BAR ================= */
+  .mobile-bar{display:none;}
+
+  /* ================= ABOUT SECTION (คำอธิบาย แก้ไขได้) ================= */
+  .about-card{
+    position:relative;
+    border-radius:24px;
+    padding:38px 34px;
+    background:linear-gradient(160deg, var(--card), var(--bg-1));
+    border:1px solid var(--card-line);
+    overflow:hidden;
+  }
+  .about-glow{
+    position:absolute;inset:0;
+    background:
+      radial-gradient(35% 60% at 0% 0%, rgba(255,45,120,0.18), transparent 70%),
+      radial-gradient(35% 60% at 100% 100%, rgba(139,92,246,0.22), transparent 70%);
+    pointer-events:none;
+  }
+  .about-text{
+    position:relative;z-index:1;
+    white-space:pre-line;
+    font-size:15.5px;
+    line-height:2;
+    color:var(--text);
+    max-width:820px;
+    margin:0 auto;
+    text-align:center;
+  }
+  .about-edit-btn{
+    position:absolute;top:16px;right:16px;z-index:2;
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.2);
+    color:var(--text);
+    font-family:'Kanit',sans-serif;
+    font-size:12px;font-weight:600;
+    padding:8px 14px;border-radius:9999px;
+    cursor:pointer;
+  }
+  .about-edit-btn:hover{background:rgba(255,255,255,0.16);}
+
+  .about-modal-overlay{
+    display:none;
+    position:fixed;inset:0;z-index:100;
+    background:rgba(10,4,20,0.75);
+    backdrop-filter:blur(4px);
+    align-items:center;justify-content:center;
+    padding:20px;
+  }
+  .about-modal-overlay.open{display:flex;}
+  .about-modal{
+    background:var(--bg-1);
+    border:1px solid var(--card-line);
+    border-radius:20px;
+    padding:26px;
+    width:100%;max-width:560px;
+  }
+  .about-modal h3{
+    font-family:'Kanit',sans-serif;font-weight:700;
+    text-transform:none;font-size:17px;margin-bottom:14px;color:var(--gold);
+  }
+  .about-modal textarea{
+    width:100%;
+    background:var(--bg-0);
+    border:1px solid var(--card-line);
+    border-radius:12px;
+    padding:14px;
+    color:var(--text);
+    font-family:'Kanit',sans-serif;
+    font-size:14px;line-height:1.8;
+    resize:vertical;
+  }
+  .about-modal-actions{
+    display:flex;gap:10px;margin-top:16px;justify-content:flex-end;
+  }
+  .about-cancel-btn{background:rgba(255,255,255,0.1);color:var(--text);}
+
+  @media (max-width:900px){
+    .price-grid{grid-template-columns:repeat(2,1fr);}
+    .feature-grid{grid-template-columns:1fr;}
+    .yt-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:600px){
+    .price-grid{grid-template-columns:1fr;}
+    .yt-grid{grid-template-columns:1fr;}
+    .nav-call span.nav-call-text{display:none;}
+    body{padding-bottom:70px;}
+    .mobile-bar{
+      display:flex;position:fixed;bottom:0;left:0;right:0;z-index:60;
+      background:var(--bg-1);border-top:1px solid var(--card-line);
+      padding:10px 14px;gap:10px;
+    }
+    .mobile-bar a{flex:1;text-align:center;padding:12px;border-radius:12px;font-weight:700;font-size:13px;}
+  }
+</style>
+</head>
+<body>
+
+  <nav>
+    <div class="wrap nav-inner">
+      <div class="brand">จิรสิน<span> รับถ่ายวีดีโอ</span></div>
+      <a href="tel:0923866522" class="nav-call">📞 <span class="nav-call-text">092-386-6522</span></a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <div class="wrap hero-content">
+      <div class="rec-chip"><span class="rec-dot"></span> รับถ่ายทำวีดีโอทุกงาน ทั่วประเทศ</div>
+      <h1>ถ่ายวีดีโองานสำคัญ<br>ให้เป็นความทรงจำ</h1>
+      <p class="lead">ถ่ายงานพิธี งานบวช งานแต่ง งานเลี้ยงสังสรรค์ งานสัมนา งานปาร์ตี้ คอร์สออนไลน์ และงานคอนเสิร์ต พร้อมระบบ OB Switching และไลฟ์สดคุณภาพสูง ฟรีค่าตัดต่อทุกงาน</p>
+      <div class="hero-cta">
+        <a href="tel:0923866522" class="btn btn-primary">📞 โทรจองคิว 092-386-6522</a>
+        <a href="https://line.me/ti/p/~0923866522" target="_blank" class="btn btn-line">💬 แชทผ่าน LINE</a>
+      </div>
+      <div class="price-badge">
+        <div>เริ่มต้นเพียง <b>3,900.-</b></div>
+        <div class="divider"></div>
+        <div>ฟรีค่าตัดต่อ</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services">
+    <div class="wrap chip-row">
+      <span class="chip">🙏 งานบวช</span>
+      <span class="chip">💍 งานแต่งงาน</span>
+      <span class="chip">🎉 งานเลี้ยงสังสรรค์</span>
+      <span class="chip">📊 งานสัมนา</span>
+      <span class="chip">🥳 งานปาร์ตี้</span>
+      <span class="chip">💻 คอร์สสอนออนไลน์</span>
+      <span class="chip">🎤 งานคอนเสิร์ต</span>
+      <span class="chip">🔴 ไลฟ์สด (Live Streaming)</span>
+    </div>
+  </section>
+
+  <!-- ================= 📝 คำอธิบาย (แก้ไขได้) ================= -->
+  <section class="section about-section" style="padding-top:10px;padding-bottom:30px;">
+    <div class="wrap">
+      <div class="about-card">
+        <button class="about-edit-btn" onclick="openAboutEditor()" title="แก้ไขข้อความ">✏️ แก้ไข</button>
+        <div class="about-glow"></div>
+        <div class="about-text" id="aboutText">กำลังโหลด...</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal สำหรับแก้ไขข้อความ -->
+  <div class="about-modal-overlay" id="aboutModalOverlay">
+    <div class="about-modal">
+      <h3>แก้ไขคำอธิบาย</h3>
+      <textarea id="aboutTextarea" rows="12"></textarea>
+      <div class="about-modal-actions">
+        <button class="btn btn-line" onclick="saveAboutText()">💾 บันทึก</button>
+        <button class="btn about-cancel-btn" onclick="closeAboutEditor()">ยกเลิก</button>
+      </div>
+    </div>
+  </div>
+  <!-- ============================================================= -->
+
+
+  <section class="section" style="padding-top:20px;padding-bottom:30px;">
+    <div class="wrap">
+      <div class="section-eyebrow">งานที่เรารับถ่าย</div>
+      <h2>ทุกโมเมนต์สำคัญ เราพร้อมบันทึกความทรงจำ</h2>
+      <p class="sub">ครอบคลุมทุกรูปแบบงาน ตั้งแต่พิธีเล็กๆ ไปจนถึงงานอีเวนต์ขนาดใหญ่</p>
+
+      <div class="cat-grid">
+        <div class="cat-card cat-1">
+          <div class="cat-texture" style="background-image:url('cat-ordination.jpg')"></div>
+          <div class="cat-tint"></div>
+          <div class="cat-icon">🙏</div>
+          <div class="cat-shade"></div>
+          <div class="cat-num">01</div>
+          <div class="cat-label"><div class="name">งานบวช</div><div class="sub">พิธีบวชและงานทำบุญ</div></div>
+        </div>
+        <div class="cat-card cat-2">
+          <div class="cat-texture" style="background-image:url('cat-concert.jpg')"></div>
+          <div class="cat-tint"></div>
+          <div class="cat-icon">💍</div>
+          <div class="cat-shade"></div>
+          <div class="cat-num">02</div>
+          <div class="cat-label"><div class="name">งานแต่ง</div><div class="sub">บันทึกวันสำคัญที่สุด</div></div>
+        </div>
+        <div class="cat-card cat-3">
+          <div class="cat-texture" style="background-image:url('cat-wedding.jpg')"></div>
+          <div class="cat-tint"></div>
+          <div class="cat-icon">🎤</div>
+          <div class="cat-shade"></div>
+          <div class="cat-num">03</div>
+          <div class="cat-label"><div class="name">คอนเสิร์ต</div><div class="sub">มัลติแคมพร้อมไลฟ์สด</div></div>
+        </div>
+        <div class="cat-card cat-4">
+          <div class="cat-texture" style="background-image:url('cat-seminar.jpg')"></div>
+          <div class="cat-tint"></div>
+          <div class="cat-icon">📊</div>
+          <div class="cat-shade"></div>
+          <div class="cat-num">04</div>
+          <div class="cat-label"><div class="name">สัมมนา</div><div class="sub">ถ่ายทอดสดขึ้นจอ</div></div>
+        </div>
+        <div class="cat-card cat-5">
+          <div class="cat-texture" style="background-image:url('cat-online.jpg')"></div>
+          <div class="cat-tint"></div>
+          <div class="cat-icon">🥳</div>
+          <div class="cat-shade"></div>
+          <div class="cat-num">05</div>
+          <div class="cat-label"><div class="name">ปาร์ตี้</div><div class="sub">งานเลี้ยงสังสรรค์</div></div>
+        </div>
+        <div class="cat-card cat-6">
+          <div class="cat-texture" style="background-image:url('cat-party.jpg')"></div>
+          <div class="cat-tint"></div>
+          <div class="cat-icon">💻</div>
+          <div class="cat-shade"></div>
+          <div class="cat-num">06</div>
+          <div class="cat-label"><div class="name">คอร์สออนไลน์</div><div class="sub">คุณภาพภาพและเสียงชัดเจน</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="pricing">
+    <div class="wrap">
+      <div class="section-eyebrow">แพ็คเกจราคา</div>
+      <h2>เลือกแพ็คเกจที่ใช่สำหรับงานคุณ</h2>
+      <p class="sub">ราคาชัดเจน ไม่มีค่าใช้จ่ายแอบแฝง ฟรีค่าตัดต่อทุกแพ็คเกจ</p>
+
+      <div class="price-grid">
+        <div class="price-card popular">
+          <span class="popular-tag">ยอดนิยม</span>
+          <div class="tier-name">งานไม่เกิน 5 ชั่วโมง</div>
+          <div class="tier-price">3,900<small> บาท</small></div>
+          <ul>
+            <li>ถ่ายทำโดยช่างมืออาชีพ</li>
+            <li>ฟรีค่าตัดต่อ</li>
+            <li>เหมาะกับพิธีสั้น งานบวช งานเลี้ยง</li>
+          </ul>
+          <a href="tel:0923866522" class="btn btn-primary">จองคิวนี้</a>
+        </div>
+
+        <div class="price-card">
+          <div class="tier-name">งานเต็มวัน 08.00–17.00 น.</div>
+          <div class="tier-price">5,900<small> บาท</small></div>
+          <ul>
+            <li>ถ่ายทำยาวได้ทั้งวัน</li>
+            <li>ฟรีค่าตัดต่อ</li>
+            <li>เหมาะกับงานแต่ง งานพิธีใหญ่</li>
+          </ul>
+          <a href="tel:0923866522" class="btn btn-primary">จองคิวนี้</a>
+        </div>
+
+        <div class="price-card">
+          <div class="tier-name">OB Switching 2 กล้อง</div>
+          <div class="tier-price">9,000<small> บาท</small></div>
+          <ul>
+            <li>สลับมุมกล้องสดแบบมืออาชีพ</li>
+            <li>พร้อมทีมงานเต็มระบบ</li>
+            <li>เหมาะกับสัมนา คอนเสิร์ต ไลฟ์สด</li>
+          </ul>
+          <a href="tel:0923866522" class="btn btn-primary">จองคิวนี้</a>
+        </div>
+
+        <div class="price-card">
+          <div class="tier-name">OB Switching 3 กล้อง</div>
+          <div class="tier-price">12,000<small> บาท</small></div>
+          <ul>
+            <li>มุมกล้องครบทุกจุดสำคัญ</li>
+            <li>พร้อมทีมงานเต็มระบบ</li>
+            <li>เหมาะกับงานใหญ่ ถ่ายทอดสดขึ้นจอ</li>
+          </ul>
+          <a href="tel:0923866522" class="btn btn-primary">จองคิวนี้</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-eyebrow">บริการของเรา</div>
+      <h2>ครบทุกระบบ ที่งานสำคัญต้องการ</h2>
+      <p class="sub">ไม่ว่างานจะเล็กหรือใหญ่ เรามีระบบรองรับให้เหมาะกับทุกรูปแบบงาน</p>
+
+      <div class="feature-grid">
+        <div class="feature">
+          <span class="emoji">🎥</span>
+          <h3>ระบบ OB Switching</h3>
+          <p>สลับมุมกล้องหลายตัวแบบสด ให้ภาพลื่นไหลมืออาชีพ เหมาะกับงานสัมนา คอนเสิร์ต และพิธีใหญ่</p>
+        </div>
+        <div class="feature">
+          <span class="emoji">📽️</span>
+          <h3>ถ่ายทอดสดขึ้นจอโปรเจ็คเตอร์</h3>
+          <p>ให้แขกในงานเห็นภาพสดชัดเจนทุกมุม เหมาะกับงานที่มีผู้ร่วมงานจำนวนมาก</p>
+        </div>
+        <div class="feature">
+          <span class="emoji">🔴</span>
+          <h3>ไลฟ์สด Live Streaming</h3>
+          <p>ถ่ายทอดสดออนไลน์ให้ญาติหรือผู้ชมที่มาร่วมงานไม่ได้ ดูได้แบบเรียลไทม์</p>
+        </div>
+        <div class="feature">
+          <span class="emoji">✂️</span>
+          <h3>ฟรีค่าตัดต่อทุกงาน</h3>
+          <p>ไม่มีค่าใช้จ่ายเพิ่มเติมด้านการตัดต่อ ได้วีดีโอที่พร้อมดูและแชร์ได้ทันที</p>
+        </div>
+        <div class="feature">
+          <span class="emoji">🇹🇭</span>
+          <h3>รับงานทั่วประเทศ</h3>
+          <p>ไม่ว่างานจะจัดที่จังหวัดไหน ทีมงานพร้อมเดินทางไปถ่ายทำให้ถึงที่</p>
+        </div>
+        <div class="feature">
+          <span class="emoji">💻</span>
+          <h3>คอร์สสอนออนไลน์</h3>
+          <p>รับถ่ายทำวีดีโอคอร์สเรียนออนไลน์ คุณภาพภาพและเสียงชัดเจน พร้อมเผยแพร่</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="portfolio" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-eyebrow">ผลงานที่ผ่านมา</div>
+      <h2>ตัวอย่างงานถ่ายจริง</h2>
+      <p class="sub">คลิกเพื่อรับชมผลงานเต็มบน YouTube</p>
+
+      <div class="yt-grid" id="ytGrid"></div>
+    </div>
+  </section>
+
+  <section class="contact">
+    <div class="contact-glow"></div>
+    <div class="wrap contact-inner">
+      <div class="section-eyebrow">จองคิวถ่ายงานของคุณวันนี้</div>
+      <h2 style="margin-bottom:22px;">พร้อมบันทึกทุกช่วงเวลาสำคัญ</h2>
+      <a href="tel:0923866522" class="phone-big">092-386-6522</a>
+      <p class="sub" style="margin-top:18px;">โทรหรือแชทไลน์เพื่อสอบถามคิวว่างและรายละเอียดเพิ่มเติม</p>
+      <div class="hero-cta">
+        <a href="tel:0923866522" class="btn btn-primary">📞 โทรเลย</a>
+        <a href="https://line.me/ti/p/~0923866522" target="_blank" class="btn btn-line">💬 แชทผ่าน LINE</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">© <span id="year"></span> จิรสิน รับถ่ายวีดีโอ · รับถ่ายทำวีดีโอทุกงานทั่วประเทศ</div>
+  </footer>
+
+  <div class="mobile-bar">
+    <a href="tel:0923866522" class="btn-primary" style="background:linear-gradient(135deg,var(--magenta),var(--violet));color:white;">📞 โทร</a>
+    <a href="https://line.me/ti/p/~0923866522" target="_blank" style="background:#06c755;color:white;">💬 LINE</a>
+  </div>
+
+<script>
+  document.getElementById('year').innerText = new Date().getFullYear() + 543; // ปี พ.ศ.
+
+  var videoIds = [
+    "v4oo_h9S1UM",
+    "cfzvyHfIs04",
+    "MvEhpHAPp2I",
+    "Fz-0E6fRlpw",
+    "00rz3A-gSe8",
+    "rHB0kQhnfJQ"
+  ];
+
+  var grid = document.getElementById('ytGrid');
+  videoIds.forEach(function (id) {
+    var card = document.createElement('a');
+    card.href = 'https://www.youtube.com/watch?v=' + id;
+    card.target = '_blank';
+    card.className = 'yt-card';
+    card.innerHTML =
+      '<img src="https://img.youtube.com/vi/' + id + '/hqdefault.jpg" loading="lazy" alt="ผลงานถ่ายวีดีโอ">' +
+      '<div class="yt-play"><span>▶</span></div>';
+    grid.appendChild(card);
+  });
+
+  // ============================================================
+  // 📝 ระบบคำอธิบาย แก้ไขได้ (เก็บใน Firestore โปรเจกต์เดียวกับ chirasin-market)
+  // ============================================================
+  var firebaseConfig = {
+    apiKey: "AIzaSyCURMQSPIIuviXufNcAWgIcCv65JeqxpKI",
+    authDomain: "chirasin-market.firebaseapp.com",
+    projectId: "chirasin-market",
+    storageBucket: "chirasin-market.firebasestorage.app",
+    messagingSenderId: "899912763787",
+    appId: "1:899912763787:web:57bcae38afd3c5cecb078e"
+  };
+  firebase.initializeApp(firebaseConfig);
+  var aboutDb = firebase.firestore();
+  var ABOUT_DOC_PATH = "kv/jirasin-video-about"; // เก็บแยก path ชัดเจน ไม่ปนกับข้อมูลของ chirasin-market
+
+  // ข้อความเริ่มต้น (ใช้ตอนยังไม่เคยมีใครกดบันทึกจาก Firestore เลย)
+  var DEFAULT_ABOUT_TEXT =
+    "รับถ่ายวีดีโอ 3,900 ฟรีค่าตัดต่อ โทร 092-386-6522\n" +
+    "รับถ่ายวีดีโองานพิธีต่างๆ งานบวช งานแต่ง งานเลี้ยงสังสรรค์ งานสัมนา งานปาร์ตี้ รับถ่ายวีดีโอคอร์สสอนออนไลน์ งานคอนเสิร์ต และอื่นๆ รับทุกงานทั่วประเทศ\n" +
+    "งานไม่เกิน 5 ชั่วโมง ราคา 3,900 บาท\n" +
+    "งานเต็มวัน 08.00 - 17.00 น. ราคา 5,900 บาท\n" +
+    "รับถ่ายทำวีดีโอ กล้อง OB Switching ราคาถูก\n" +
+    "รับถ่ายวีดีโอระบบ OB Switching พร้อมถ่ายทอดสดออกจอโปรเจ็คเตอร์\n" +
+    "รับถ่ายวีดีโอไลฟ์สด (Live Streaming)\n" +
+    "รับถ่ายวีดีโอคอร์สสอนออนไลน์\n" +
+    "กล้อง OB Switching 2 ตัว พร้อมทีมงาน ราคา 9,000 บาท\n" +
+    "กล้อง OB Switching 3 ตัว พร้อมทีมงาน ราคา 12,000 บาท";
+
+  // 🔧 แก้รหัสผ่านแก้ไขตรงนี้ได้ (ค่าตั้งต้นเดียวกับหน้าแอดมิน chirasin-market)
+  var ABOUT_EDIT_PASSWORD = "chirasin2026";
+
+  function loadAboutText() {
+    aboutDb.doc(ABOUT_DOC_PATH).get().then(function (docSnap) {
+      var text = (docSnap.exists && docSnap.data().value) ? docSnap.data().value : DEFAULT_ABOUT_TEXT;
+      document.getElementById('aboutText').innerText = text;
+    }).catch(function (err) {
+      console.warn('โหลดคำอธิบายจาก Firestore ไม่สำเร็จ ใช้ข้อความเริ่มต้นแทน:', err);
+      document.getElementById('aboutText').innerText = DEFAULT_ABOUT_TEXT;
+    });
+  }
+
+  function openAboutEditor() {
+    var pass = prompt("กรอกรหัสผ่านเพื่อแก้ไขข้อความ:");
+    if (pass === null) return; // กดยกเลิก
+    if (pass !== ABOUT_EDIT_PASSWORD) {
+      alert("รหัสผ่านไม่ถูกต้อง");
+      return;
+    }
+    document.getElementById('aboutTextarea').value = document.getElementById('aboutText').innerText;
+    document.getElementById('aboutModalOverlay').classList.add('open');
+  }
+
+  function closeAboutEditor() {
+    document.getElementById('aboutModalOverlay').classList.remove('open');
+  }
+
+  function saveAboutText() {
+    var newText = document.getElementById('aboutTextarea').value.trim();
+    if (!newText) { alert("กรุณากรอกข้อความ"); return; }
+    aboutDb.doc(ABOUT_DOC_PATH).set({ value: newText, updatedAt: Date.now() }).then(function () {
+      document.getElementById('aboutText').innerText = newText;
+      closeAboutEditor();
+      alert("บันทึกเรียบร้อยแล้ว ✅");
+    }).catch(function (err) {
+      console.error(err);
+      alert("บันทึกไม่สำเร็จ: " + err.message);
+    });
+  }
+
+  loadAboutText();
+</script>
+
+</body>
+</html>
