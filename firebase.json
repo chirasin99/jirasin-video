@@ -1,0 +1,18 @@
+{
+  "hosting": {
+    "public": "public",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "**",
+        "function": "renderApp"
+      }
+    ]
+  },
+  "functions": {
+    "source": "functions",
+    "predeploy": [
+      "cp ../public/index.html ./public/index.html"
+    ]
+  }
+}
