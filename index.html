@@ -194,6 +194,13 @@
   }
   .cat-card:hover{transform:translateY(-6px) scale(1.035);box-shadow:0 18px 34px -14px rgba(0,0,0,0.55);}
   .cat-texture{position:absolute;inset:0;background-size:cover;background-position:center;filter:saturate(1.15);}
+  /* 🛟 สีพื้นหลังสำรอง กันการ์ดดูว่างเปล่าถ้ารูปโหลดไม่ขึ้น (404/ไฟล์หาย) */
+  .cat-1 .cat-texture{background-color:#7a1d4f;}
+  .cat-2 .cat-texture{background-color:#341a6b;}
+  .cat-3 .cat-texture{background-color:#8a5a10;}
+  .cat-4 .cat-texture{background-color:#0e5866;}
+  .cat-5 .cat-texture{background-color:#341a6b;}
+  .cat-6 .cat-texture{background-color:#8a5a10;}
   .cat-tint{position:absolute;inset:0;mix-blend-mode:multiply;opacity:0.75;}
   .cat-1 .cat-tint{background:linear-gradient(155deg,#ff2d78,#7a1d4f 70%);}
   .cat-2 .cat-tint{background:linear-gradient(155deg,#8b5cf6,#341a6b 70%);}
@@ -436,6 +443,7 @@
     <div class="about-modal">
       <h3>แก้ไขคำอธิบาย</h3>
       <textarea id="aboutTextarea" rows="12"></textarea>
+      <input type="password" id="aboutPassword" placeholder="รหัสผ่าน" style="width:100%;margin-top:12px;background:var(--bg-0);border:1px solid var(--card-line);border-radius:12px;padding:12px 14px;color:var(--text);font-family:'Kanit',sans-serif;font-size:14px;">
       <div class="about-modal-actions">
         <button class="btn btn-line" onclick="saveAboutText()">💾 บันทึก</button>
         <button class="btn about-cancel-btn" onclick="closeAboutEditor()">ยกเลิก</button>
@@ -461,7 +469,7 @@
           <div class="cat-label"><div class="name">งานบวช</div><div class="sub">พิธีบวชและงานทำบุญ</div></div>
         </div>
         <div class="cat-card cat-2">
-          <div class="cat-texture" style="background-image:url('cat-concert.jpg')"></div>
+          <div class="cat-texture" style="background-image:url('cat-wedding.jpg')"></div>
           <div class="cat-tint"></div>
           <div class="cat-icon">💍</div>
           <div class="cat-shade"></div>
@@ -469,7 +477,7 @@
           <div class="cat-label"><div class="name">งานแต่ง</div><div class="sub">บันทึกวันสำคัญที่สุด</div></div>
         </div>
         <div class="cat-card cat-3">
-          <div class="cat-texture" style="background-image:url('cat-wedding.jpg')"></div>
+          <div class="cat-texture" style="background-image:url('cat-concert.jpg')"></div>
           <div class="cat-tint"></div>
           <div class="cat-icon">🎤</div>
           <div class="cat-shade"></div>
@@ -685,8 +693,9 @@
     "กล้อง OB Switching 2 ตัว พร้อมทีมงาน ราคา 9,000 บาท\n" +
     "กล้อง OB Switching 3 ตัว พร้อมทีมงาน ราคา 12,000 บาท";
 
-  // 🔧 แก้รหัสผ่านแก้ไขตรงนี้ได้ (ค่าตั้งต้นเดียวกับหน้าแอดมิน chirasin-market)
-  var ABOUT_EDIT_PASSWORD = "chirasin2026";
+  // 🔧 รหัสผ่านไม่ได้อยู่ในไฟล์นี้แล้ว — เช็คที่ฝั่งเซิร์ฟเวอร์ (Cloud Function) เท่านั้น
+  // เปลี่ยนรหัสผ่านได้ที่ functions/index.js (ตัวแปร JIRASIN_ABOUT_PASSWORD) แล้ว deploy ใหม่
+  var SAVE_ABOUT_ENDPOINT = 'https://asia-southeast1-chirasin-market.cloudfunctions.net/saveJirasinAbout';
 
   function loadAboutText() {
     aboutDb.doc(ABOUT_DOC_PATH).get().then(function (docSnap) {
@@ -699,13 +708,8 @@
   }
 
   function openAboutEditor() {
-    var pass = prompt("กรอกรหัสผ่านเพื่อแก้ไขข้อความ:");
-    if (pass === null) return; // กดยกเลิก
-    if (pass !== ABOUT_EDIT_PASSWORD) {
-      alert("รหัสผ่านไม่ถูกต้อง");
-      return;
-    }
     document.getElementById('aboutTextarea').value = document.getElementById('aboutText').innerText;
+    document.getElementById('aboutPassword').value = '';
     document.getElementById('aboutModalOverlay').classList.add('open');
   }
 
@@ -715,15 +719,26 @@
 
   function saveAboutText() {
     var newText = document.getElementById('aboutTextarea').value.trim();
+    var password = document.getElementById('aboutPassword').value;
     if (!newText) { alert("กรุณากรอกข้อความ"); return; }
-    aboutDb.doc(ABOUT_DOC_PATH).set({ value: newText, updatedAt: Date.now() }).then(function () {
-      document.getElementById('aboutText').innerText = newText;
-      closeAboutEditor();
-      alert("บันทึกเรียบร้อยแล้ว ✅");
-    }).catch(function (err) {
-      console.error(err);
-      alert("บันทึกไม่สำเร็จ: " + err.message);
-    });
+    if (!password) { alert("กรุณากรอกรหัสผ่าน"); return; }
+
+    fetch(SAVE_ABOUT_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: password, text: newText })
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (!data.ok) { alert(data.error || "บันทึกไม่สำเร็จ"); return; }
+        document.getElementById('aboutText').innerText = newText;
+        closeAboutEditor();
+        alert("บันทึกเรียบร้อยแล้ว ✅");
+      })
+      .catch(function (err) {
+        console.error(err);
+        alert("บันทึกไม่สำเร็จ: เชื่อมต่อเซิร์ฟเวอร์ไม่ได้");
+      });
   }
 
   loadAboutText();
